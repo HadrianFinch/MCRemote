@@ -1,0 +1,151 @@
+@font-face {
+    font-family: minecraft;
+    src: url(/fonts/minecraft_font.ttf);
+}
+*
+{
+    border-radius: 0pt;
+    font-family: minecraft;
+    scroll-behavior: smooth;
+}
+
+#consoleContainer
+{
+    width: 45%;
+    height: 300pt;
+    position: fixed;
+    overflow: hidden;
+    background-color: #cbcbcb;
+}
+#consoleContainer > form
+{
+    position: absolute;
+    display: block;
+    background-color: #b2b2b2;
+    
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20pt;
+}
+#consoleContainer > form *
+{
+    height: 100%;
+    border: none;
+    background-color: #00000000;
+}
+#consoleContainer > form *:focus
+{
+    outline: none;
+}
+#consoleContainer > form > input
+{
+    width: calc(100% - 35pt);
+    padding-left: 5pt;
+}
+#consoleContainer > form > button
+{
+    width: 25pt;
+    left: calc(100% - 30pt);
+}
+#consoleContainer > div.textContainer
+{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 10pt;
+    right: 10pt;
+    bottom: 25pt;
+    overflow-y: scroll;
+    overflow-x: initial;
+}
+
+.dragable
+{
+    position: fixed;
+    resize: both !important;
+
+    background-color: #cbcbcb;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.dragHeadder
+{
+    position: absolute;
+    width: 100%;
+    height: 15pt;
+    background-color: lightcyan;
+    z-index: 5;
+    text-align: center;
+    cursor: move;
+}
+
+span.timestamp
+{
+    color: cadetblue;
+}
+
+span.sender
+{
+    color: steelblue;
+}
+div.fit
+{
+    width: fit-content;
+    height: fit-content;
+}
+
+#statusbox
+{
+    padding: 5pt;
+    text-align: center;
+}
+#statusbox > div
+{
+    height: 20pt;
+    width: 100%;
+}
+
+#statusbox.s1 > div
+{
+    background-color: #86a1b5;
+}
+#statusbox.s1 > div::after
+{
+    content: "starting up";
+}
+
+#statusbox.s2 > div
+{
+    background-color: #92d192;
+}
+#statusbox.s2 > div::after
+{
+    content: "online";
+}
+
+#statusbox.s3 > div
+{
+    background-color: #9c8383;
+}
+#statusbox.s3 > div::after
+{
+    content: "Shuting Down";
+}
+
+#statusbox.s4 > div
+{
+    background-color: #c22d2d;
+}
+#statusbox.s4 > div::after
+{
+    content: "Offline";
+}
+
+#statusbox.s5 > div
+{
+    background-color: #9e5ae2;
+}
+#statusbox.s5 > div::after
+{
+    content: "Restarting";
+}

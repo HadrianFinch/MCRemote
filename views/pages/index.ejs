@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>MCRemote Server Access</title>
+</head>
+<body>
+    <div id="consoleContainer" class="dragable">
+        <div class="dragHeadder">Console</div>
+        <div class="textContainer">
+            <br>
+            <br>
+        </div>
+        <form action="none">
+            <input type="text">
+            <button type="submit">-></button>
+        </form>
+    </div>
+    <div class="dragable fit">
+        <div class="dragHeadder">Server Status</div>
+        <br>
+        <div id="statusbox" class="s1">
+            <div></div>
+        </div>
+        <div>
+            <button id="server_turnOn">Turn On</button>
+            <button id="server_turnOff">Turn Off</button>
+            <br>
+            <button id="server_restart">Restart</button>
+            <!-- <button>ABORT!</button> -->
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/f.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/console.js"></script>
+</body>
+</html>
