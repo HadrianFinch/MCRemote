@@ -9,19 +9,97 @@
     scroll-behavior: smooth;
 }
 
+button
+{
+    margin-bottom: 5pt;
+    padding: 2pt;
+}
+.border, button, #statusbox
+{
+    border: 2pt solid #888888;
+}
+
+body, html
+{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.navigation
+{
+    width: 100%;
+    position: fixed;
+    background-color: #292929;
+    height: 25pt;
+
+    z-index: 10;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.navigation a,
+.navigation a:visited
+{
+    position: relative;
+    padding: 10pt;
+    margin-right: 10pt;
+    padding-top: 5pt;
+    color: white;
+    text-decoration: none;
+    height: 25pt;
+    font-size: 14pt;
+    top: 2pt;
+    cursor: pointer;
+}
+.navigation a:hover
+{
+    background-color: #626262;
+}
+#main
+{
+    background-color: #292929;
+    width: calc(100% - 300pt - 100pt);
+    height: fit-content;
+    position: absolute;
+    left: 50%;
+    top: 50pt;
+
+    transform: translate(calc(-50% + 100pt), 0);
+    padding: 10pt;
+    color: white;
+}
+#sidebar
+{
+    background-color: #292929;
+    width: 160pt;
+    height: fit-content;
+    top: 50pt;
+    position: absolute;
+    left: 55pt;
+    
+    /* transform: translate(calc(-50% + 120pt), 0); */
+    padding: 10pt;
+    color: white;
+
+}
+#sidebar button
+{
+    width: 100%;
+    height: 20pt;
+}
+
 #consoleContainer
 {
-    width: 45%;
-    height: 300pt;
-    position: fixed;
+    width: 100%;
+    height: 500pt;
+    position: relative;
     overflow: hidden;
-    background-color: #cbcbcb;
+    background-color: #606060;
 }
 #consoleContainer > form
 {
     position: absolute;
     display: block;
-    background-color: #b2b2b2;
+    background-color: #7c7c7c;
     
     bottom: 0;
     left: 0;
@@ -96,13 +174,15 @@ div.fit
 
 #statusbox
 {
-    padding: 5pt;
+    padding: 0pt;
+    margin-bottom: 5pt;
     text-align: center;
 }
 #statusbox > div
 {
-    height: 20pt;
+    height: 25pt;
     width: 100%;
+    font-size: 16pt;
 }
 
 #statusbox.s1 > div
@@ -148,4 +228,18 @@ div.fit
 #statusbox.s5 > div::after
 {
     content: "Restarting";
+}
+
+#serverPropertiesContainer div input
+{
+    position: absolute;
+    left: 50%;
+}
+#serverPropertiesContainer div
+{
+    width: calc(50% + 20pt);
+}
+#serverPropertiesContainer div.odd
+{
+    background-color: #4a4a4a6f;
 }

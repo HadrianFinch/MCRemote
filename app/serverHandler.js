@@ -9,7 +9,10 @@ const spawn = require('child_process').spawn;
             internalProcess: null,
             internal_restarting: false,
             SendCommand: (command) => {
-                ph.internalProcess.stdin.write(command + "\n");
+                if (ph.internalProcess != null)
+                {
+                    ph.internalProcess.stdin.write(command + "\n");
+                }
             },
             OnDataRecive: (data) => {},
             OnStop: (code) => {},

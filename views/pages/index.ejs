@@ -10,20 +10,22 @@
     <title>MCRemote Server Access</title>
 </head>
 <body>
-    <div id="consoleContainer" class="dragable">
-        <div class="dragHeadder">Console</div>
-        <div class="textContainer">
-            <br>
-            <br>
-        </div>
-        <form action="none">
-            <input type="text">
-            <button type="submit">-></button>
-        </form>
+    <div class="navigation">
+        <a href="#">
+            MCRemote
+        </a>
+        <a href="#console">
+            Console
+        </a>
+        <a href="#settings">
+            Settings
+        </a>
+        <a href="#controlPanel">
+            Control Panel
+        </a>
     </div>
-    <div class="dragable fit">
-        <div class="dragHeadder">Server Status</div>
-        <br>
+    <div id="sidebar">
+        <h1>Status</h1>
         <div id="statusbox" class="s1">
             <div></div>
         </div>
@@ -34,6 +36,44 @@
             <button id="server_restart">Restart</button>
             <!-- <button>ABORT!</button> -->
         </div>
+        <h1 id="controlPanel">Control Panel</h1>
+        <div>
+            <p>Kill Commands</p>
+            <button class="commandButton" data-commandText="kill @e">Kill all entitys</button>
+            <button class="commandButton" data-commandText="kill @a">Kill all players</button>
+            <button class="commandButton" data-commandText="kill @e[type=!player]">Kill all non-players</button>
+
+            <br>
+            <br>
+            <button class="commandButton" data-commandText="execute as @e[type=minecraft:boat,nbt=!{Passengers:[{}]}] at @s unless entity @a[distance=..1] run kill @s">Kill riderless boats</button>
+            <button class="commandButton" data-commandText="execute as @e[type=minecraft:minecart,nbt=!{Passengers:[{}]}] at @s unless entity @a[distance=..1] run kill @s">Kill riderless minecarts</button>
+            
+            <br>
+            <br>
+            <p>Time Commands</p>
+            <button class="commandButton" data-commandText="time set day">Set time to day</button>
+            <button class="commandButton" data-commandText="time set noon">Set time to noon</button>
+            <button class="commandButton" data-commandText="time set night">Set time to night</button>
+            <button class="commandButton" data-commandText="time set midnight">Set time to midnight</button>
+        </div>
+    </div>
+    <div id="main">
+        <h1 id="console">Remote Console</h1>
+        <div id="consoleContainer">
+            <div class="textContainer">
+            </div>
+            <form action="none">
+                <input type="text">
+                <button type="submit">-></button>
+            </form>
+        </div>
+        
+        <h1 id="settings">Server Settings</h1>
+        <div id="serverPropertiesContainer">
+
+        </div>
+        <br>
+        <button id="saveprops">Save Server Properties</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

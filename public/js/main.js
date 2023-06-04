@@ -49,12 +49,22 @@ function DragElement(elmnt) {
     }
 }
 
-(() => {
+(async () => {
     const allDragables = document.querySelectorAll(".dragable");
     for (let i = 0; i < allDragables.length; i++)
     {
         const element = allDragables[i];
         DragElement(element);
+    }
+    const commandButtons = f.FindAll(".commandButton");
+    for (let i = 0; i < commandButtons.length; i++)
+    {
+        const button = commandButtons[i];
+        const command = button.getAttribute("data-commandText");
+        
+        button.f.on("click", () => {
+            socket.emit("mc_console_in", command);
+        });
     }
 
     const statusDiv = f("#statusbox")
@@ -74,4 +84,47 @@ function DragElement(elmnt) {
     f("#server_restart").f.on("click", () => {
         socket.emit("mc_restart");
     });
+
+
+    var response = await fetch("/internalapi/get/mc_properties", 
+    {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: "",
+    });
+    const properties = await response.json();
+    // const properties = JSON.parse(propertiesStr);
+
+
+    const propertiesContainer = f("#serverPropertiesContainer");
+    for (let i = 0; i < properties.length; i++)
+    {
+        const prop = properties[i];
+        const row = propertiesContainer.f.NewChild("div");
+
+        if ((i % 2) == 1)
+        {
+            row.classList.add("odd");
+        }
+
+        const name = row.f.NewChild("span");
+        name.innerHTML = prop.name;
+
+        const value = row.f.NewChild("input");
+        value.type = "text";
+        value.value = prop.value;
+
+        value.f.on("input", () => {
+            socket.emit("mc_prop_set", i, value.value);
+        });
+    }
+
+    f("#saveprops").f.on("click", () => {
+        socket.emit("mc_prop_save");
+    });
+
+
 })();
