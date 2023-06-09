@@ -1,5 +1,6 @@
 const express = require('express');
 const ServerHandeling = require('./serverHandler');
+const ConfigLoader = require('./configLoader');
 const fs = require("fs");
 
 const socketio = require("socket.io");
@@ -20,6 +21,8 @@ const ServerStates = {
     off: 4,
     restarting: 5
 }
+
+const launcherConfig = ConfigLoader.LoadConfigFromFile("launcher.config");
 
 var currentStatus = ServerStates.off;
 var serverProperties = null;
@@ -153,6 +156,12 @@ server.listen(port, () =>
 {
     LoadServerProperties();
 
+    const commands = launcherConfig.command.split(' ');
+    mcInstance.spawnCommand = commands[0];
+
+    commands.shift();
+    mcInstance.spawnArgs = commands;
+
     mcInstance.OnStop = (exit) => {
         UpdateServerStatus(ServerStates.off);
         io.emit("mc_console_out", (`\n[--:--:--] [Remote INFO]: server stopped with exit code ${exit}\n`));
@@ -163,5 +172,6 @@ server.listen(port, () =>
 
     // console.log("starting MC Instance");
     // mcInstance.Start();
+
+    console.log('Server is listening on port ' + port);
 });
-console.log('Server is listening on port ' + port);

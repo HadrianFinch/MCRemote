@@ -8,6 +8,8 @@ const spawn = require('child_process').spawn;
         const ph = {
             internalProcess: null,
             internal_restarting: false,
+            spawnCommand: "",
+            spawnArgs: [],
             SendCommand: (command) => {
                 if (ph.internalProcess != null)
                 {
@@ -24,7 +26,7 @@ const spawn = require('child_process').spawn;
                 ph.SendCommand("stop");
             },
             Start: () => {
-                ph.internalProcess = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', './server.jar', 'nogui'], {cwd: './mc/'});
+                ph.internalProcess = spawn(ph.spawnCommand, ph.spawnArgs, {cwd: './mc/'});
 
                 ph.internalProcess.stdout.on('data', (data) =>
                 {
