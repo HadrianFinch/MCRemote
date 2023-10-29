@@ -126,5 +126,9 @@ function DragElement(elmnt) {
         socket.emit("mc_prop_save");
     });
 
+    f("#datapacks_upgrade").f.on("click", () => {
+        socket.emit("datapack_git_pull");
+    });
+
 
 })();

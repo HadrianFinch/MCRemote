@@ -23,6 +23,9 @@
         <a href="#controlPanel">
             Control Panel
         </a>
+        <a href="#datapacks">
+            Datapack Manager
+        </a>
     </div>
     <div id="sidebar">
         <h1>Status</h1>
@@ -38,6 +41,9 @@
         </div>
         <h1 id="controlPanel">Control Panel</h1>
         <div>
+            <p>General Commands</p>
+            <button class="commandButton" data-commandText="reload">Reload Server</button>
+            
             <p>Kill Commands</p>
             <button class="commandButton" data-commandText="kill @e">Kill all entitys</button>
             <button class="commandButton" data-commandText="kill @a">Kill all players</button>
@@ -74,6 +80,9 @@
         </div>
         <br>
         <button id="saveprops">Save Server Properties</button>
+
+        <h1 id="datapacks">Datapack Manager</h1>
+        <button id="datapacks_upgrade">Update Datapacks (reload required)</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

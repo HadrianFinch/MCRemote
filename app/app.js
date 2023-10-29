@@ -3,6 +3,8 @@ const ServerHandeling = require('./serverHandler');
 const ConfigLoader = require('./configLoader');
 const fs = require("fs");
 
+const child_process = require("child_process");
+
 const socketio = require("socket.io");
 
 const port = 12050;
@@ -108,6 +110,13 @@ io.on("connection", (socket) =>
     socket.on("mc_prop_save", () => {
         SaveServerProperties();
     });
+    
+    socket.on("datapack_git_pull", () => {
+        const command = 'git pull';
+        const output = child_process.execSync(command, {cwd: "./mc/world/datapacks"});
+
+        io.emit("mc_console_out", ("[--:--:--] [Git Helper]: " + output));
+    });
 
 });
 
@@ -142,7 +151,7 @@ function LoadServerProperties()
 }
 function SaveServerProperties()
 {
-    var str = "#Minecraft server properties";
+    var str = "#Minecraft server properties\n";
     for (let i = 0; i < serverProperties.length; i++)
     {
         const prop = serverProperties[i];
